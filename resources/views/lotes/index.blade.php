@@ -1,7 +1,8 @@
 @extends('layout/plantilla')
 @section('content')
  <h1>AGRICULTURA</h1>
- <a href="{{url('/lotes/create')}}" class="btn btn-success pull-right">Crear lote</a>
+ <a href="{{ url('fincas')}}" class="btn btn-info pull-right"> << Atras </a>
+ <a href="{{url('/lotes/create')}}" class="btn btn-success pull-left">Crear lote</a>
  <hr>
  <br>
     @if (count($errors) > 0)

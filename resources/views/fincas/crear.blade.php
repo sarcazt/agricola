@@ -21,12 +21,12 @@
             
             <div class="form-group">
             {!! Form::label('departamento_id', 'Departamento:') !!}
-            {!! Form::select('departamento_id', $departamentos, null, ['class' => 'form-control']) !!}
+            {!! Form::select('departamento_id', $departamentos, null, ['class' => 'form-control sel-status']) !!}
             </div>  
             
             <div class="form-group">
               <label>Ciudad:</label>
-              {!! Form::select('ciudad_id',[''=>'seleccionar ciudad'],null,['class'=>'form-control']) !!}
+              {!! Form::select('ciudad_id',[''=>'seleccionar ciudad'],null,['class'=>'form-control sel-status']) !!}
             </div>
 
             <div class="form-group">

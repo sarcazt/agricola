@@ -16,9 +16,13 @@ Route::get('/', function () {
 });
 
 Route::resource('fincas','FincaController');
+//DataTable fincas
+Route::get('data_fincas','FincaController@registros_finca');
+
 Route::resource('lotes','LoteController');
 Route::resource('sembrados','SembradosController');
 
 Route::post('ciudadesAjax', ['as'=>'ciudadesAjax','uses'=>'FincaController@ajaxCiudades']);
 
 Route::get('lotes_finca/{id}', ['as'=>'lotes_finca','uses'=>'LoteController@index']);
+Route::get('descargar-fincas/{tipo}', 'FincaController@pdf')->name('finca.pdf');
