@@ -21,7 +21,7 @@
          <th>finca_id</th>
          <th>tamaño</th>
          <th>nombre</th>
-         <th colspan="3" >Acciones</th>
+         <th colspan="4" >Acciones</th>
      </tr>
      </thead>
      <tbody>
@@ -39,6 +39,7 @@
              {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
              {!! Form::close() !!}
              </td>
+             <td><a href="{{ route('sembrados_lote', $lote->id) }}" class="btn btn-warning">Sembrados</a></td>
          </tr>
      @endforeach
      </tbody>

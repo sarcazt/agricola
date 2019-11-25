@@ -26,3 +26,5 @@ Route::post('ciudadesAjax', ['as'=>'ciudadesAjax','uses'=>'FincaController@ajaxC
 
 Route::get('lotes_finca/{id}', ['as'=>'lotes_finca','uses'=>'LoteController@index']);
 Route::get('descargar-fincas/{tipo}', 'FincaController@pdf')->name('finca.pdf');
+
+Route::get('sembrados_lote/{id}', ['as'=>'sembrados_lote','uses'=>'SembradosController@index']);
