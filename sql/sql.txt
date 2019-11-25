@@ -7,7 +7,7 @@ create	table estados (
 	nombreCorto character varying(2)
 );
 
-insert into estados values (1,'Activo', 'A');
-insert into estados values (2,'Inactivo', 'I');
-insert into estados values (3,'En ejecucion', 'E');
-insert into estados values (4,'Finalizado', 'F');
+insert into estados values (1,'En ejecucion', 'E');
+insert into estados values (2,'Finalizado', 'F');
+insert into estados values (3,'Activo', 'A');
+insert into estados values (4,'Inactivo', 'I');
