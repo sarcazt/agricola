@@ -7,15 +7,6 @@
 </div>
 
  <hr>
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
  <table class="table table-striped table-bordered table-hover" id="TblLotes">
  <thead >
    <tr class="bg-info">
@@ -72,5 +63,4 @@
 
   });
   </script>
-
 @endsection

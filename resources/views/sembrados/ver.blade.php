@@ -1,7 +1,7 @@
 @extends('layout/plantilla')
 @section('content')
     <div>
-        <a href="{{ url('sembrados')}}" class="btn btn-info pull-right"> << Atrás </a>
+        <a href="{{ url('sembrados_lote/'.$lote_id.'')}}" class="btn btn-info pull-right"> << Atras </a>
         <h1>Ver Sembrado</h1>
     </div>
     <hr>

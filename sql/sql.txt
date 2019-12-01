@@ -1,0 +1,13 @@
+--ccolorado
+--2019-11-24
+--Tabla estados
+create	table estados (
+	id int primary key,
+	descripcion character varying(20),
+	nombreCorto character varying(2)
+);
+
+insert into estados values (1,'En ejecucion', 'E');
+insert into estados values (2,'Finalizado', 'F');
+insert into estados values (3,'Activo', 'A');
+insert into estados values (4,'Inactivo', 'I');

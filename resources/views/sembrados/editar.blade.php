@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
 
 <div>
-  <a href="{{ url('sembrados')}}" class="btn btn-info pull-right">
+  <a href="{{ url('sembrados_lote/'.$lote_id.'')}}" class="btn btn-info pull-right">
     << Atras </a> <h1>Editar Sembrados</h1>
 </div>
 
@@ -55,7 +55,7 @@
                   <div class="form-group">
                     <label for="id" class="col-sm-2 control-label">lote_id:</label>
                     <div class="col-sm-10">
-                      <input type="text" name="lote_id" id="lote_id" class="form-control" value="{{$sembrados->lote_id}}">
+                      <input type="text" name="lote_id" id="lote_id" class="form-control" value="{{$sembrados->lote_id}}" readonly>
                     </div>
                   </div>
 
@@ -145,7 +145,6 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <input type="submit" value="Actualizar" class="btn btn-success btn-block">
-                  <a href="{{ route('sembrados.index') }}" class="btn btn-info btn-block">Atrás</a>
                 </div>
 
               </div>

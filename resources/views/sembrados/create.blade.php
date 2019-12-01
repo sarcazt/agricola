@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
 <div>
-  <a href="{{ url('sembrados')}}" class="btn btn-info pull-right">
+  <a href="{{ url('sembrados_lote/'.$lote_id.'')}}" class="btn btn-info pull-right">
     << Atras </a> <h1>Crear sembrados</h1>
 </div>
 <div class="row">
