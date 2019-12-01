@@ -20,6 +20,16 @@
         <div class="col-md-6">
             
             <div class="form-group">
+                {!! Form::label('nit', 'Nit:') !!}
+                {!! Form::text('nit',null,['class'=>'form-control']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('nombre', 'Nombre:') !!}
+                {!! Form::text('nombre',null,['class'=>'form-control']) !!}
+            </div>
+
+            <div class="form-group">
             {!! Form::label('departamento_id', 'Departamento:') !!}
             {!! Form::select('departamento_id', $departamentos, null, ['class' => 'form-control sel-status']) !!}
             </div>  

@@ -34,3 +34,5 @@ Route::post('ciudadesAjax', ['as'=>'ciudadesAjax','uses'=>'FincaController@ajaxC
 Route::get('descargar-fincas/{tipo}', 'FincaController@pdf')->name('finca.pdf');
 
 Route::get('sembrados_lote/{id}', ['as'=>'sembrados_lote','uses'=>'SembradosController@index']);
+//DataTable sembrados
+Route::get('data_sembrados','SembradosController@registros_sembrados');

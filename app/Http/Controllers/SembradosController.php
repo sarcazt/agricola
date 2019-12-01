@@ -11,16 +11,40 @@ use App\Ciudades;
 use Validator;
 use DB;
 use Hamcrest\Core\HasToString;
+use DataTables;
 
 class SembradosController extends Controller
 {
     public function index($id)
     {
         session(['id_lote' => $id]);
-        // $sembrados= DB::table('Sembrados')->where('lote_id','=',$id)::orderBy('id','DESC')->paginate(5);
-        $sembrados = DB::select("select s.*, c.descripcion as cultivo from sembrados s, cultivos c where s.cultivo_id = c.id and s.lote_id = " . $id);
+        return view('sembrados.index'); 
+    }
+
+    public function registros_sembrados(){
+        $lote_id = session('id_lote');
+
+        $sembrados = DB::select("select s.*, c.descripcion as cultivo from sembrados s, cultivos c where s.cultivo_id = c.id and s.lote_id = " . $lote_id);
+
+
+        return DataTables::of($sembrados)->make(true);
+
         
-        return view('sembrados.index',compact('sembrados')); 
+        // ->addColumn('action', function ($data){
+        //     return '
+        //         <div style="display:flex;align-items:center;justify-content:center" >
+        //         <a title="ver lote" style="margin-right: 5%;text" href="'.url('lotes', $data->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
+
+        //         <a title="editar lote" style="margin-right: 5%;text" href="'.route('lotes.edit',    $data->id).'" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+
+        //         <a title="eliminar lote" style="margin-right: 5%;text" data-id="'.$data->id.'" class="btn btn-danger delete_button"><i class="glyphicon glyphicon-trash"></i></a>
+
+        //         <a title="ver sembrados" style="margin-right: 5%;text" href="'.route('sembrados_lote', $data->id).'" class="btn btn-info">sembrados <i class="glyphicon glyphicon-th"></i></a>
+
+        //         </div>
+        //         ';
+        // })
+        
     }
 
     public function create()

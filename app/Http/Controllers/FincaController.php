@@ -81,7 +81,7 @@ class FincaController extends Controller
 	{
 		$finca = $request->all();
 		$validator = Validator::make($finca, [
-            'nit' => 'unique:Finca|required',
+            'nit' => 'unique:fincas|required',
             'nombre' => 'required',
 			'departamento_id'    => 'required|max:50',
 			'ciudad_id'  => 'required|max:50',

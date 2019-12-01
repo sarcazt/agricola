@@ -37,6 +37,8 @@ class LoteController extends Controller
 
                 <a title="eliminar lote" style="margin-right: 5%;text" data-id="'.$data->id.'" class="btn btn-danger delete_button"><i class="glyphicon glyphicon-trash"></i></a>
 
+                <a title="ver sembrados" style="margin-right: 5%;text" href="'.route('sembrados_lote', $data->id).'" class="btn btn-info">sembrados <i class="glyphicon glyphicon-th"></i></a>
+
                 </div>
                 ';
         })
