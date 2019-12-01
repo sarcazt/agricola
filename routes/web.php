@@ -20,12 +20,17 @@ Route::resource('fincas','FincaController');
 Route::get('data_fincas','FincaController@registros_finca');
 
 Route::resource('lotes','LoteController');
+Route::get('lotes_finca/{id}', ['as'=>'lotes_finca','uses'=>'LoteController@index']);
+
+//DataTable lotes
+Route::get('data_lotes','LoteController@registros_lote');
+
 Route::resource('sembrados','SembradosController');
 Route::resource('cultivos','CultivosController');
 
 Route::post('ciudadesAjax', ['as'=>'ciudadesAjax','uses'=>'FincaController@ajaxCiudades']);
 
-Route::get('lotes_finca/{id}', ['as'=>'lotes_finca','uses'=>'LoteController@index']);
+
 Route::get('descargar-fincas/{tipo}', 'FincaController@pdf')->name('finca.pdf');
 
 Route::get('sembrados_lote/{id}', ['as'=>'sembrados_lote','uses'=>'SembradosController@index']);

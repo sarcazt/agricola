@@ -1,47 +1,66 @@
 @extends('layout/plantilla')
 @section('content')
- <h1>AGRICULTURA</h1>
- <a href="{{ url('fincas')}}" class="btn btn-info pull-right"> << Atras </a>
- <a href="{{url('/lotes/create')}}" class="btn btn-success pull-left">Crear lote</a>
+ 
+<div class="col-md-12 separador60px">
+   <a href="{{ url('fincas')}}" class="btn btn-info pull-right"> << Atras </a>
+   <a href="{{ url('/lotes/create')}}" class="btn btn-danger pull-left">Crear lote</a>
+</div>
+
  <hr>
- <br>
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
- <table class="table table-striped table-bordered table-hover">
-     <thead>
-     <tr class="bg-info">
-         <th>id</th>
-         <th>finca_id</th>
-         <th>tamaño</th>
-         <th>nombre</th>
-         <th colspan="4" >Acciones</th>
-     </tr>
-     </thead>
-     <tbody>
-     @foreach ($lotes as $lote)
-         <tr>
-             {{-- <td><img src="{{ asset('img/'.$finca->imagen) }}" height="35" width="30"></td> --}}
-             <td>{{ $lote->id }}</td>
-             <td>{{ $lote->finca_id }}</td>
-             <td>{{ $lote->tamano }}</td>
-             <td>{{ $lote->nombre }}</td>
-             <td><a href="{{ url('lotes', $lote->id) }}" class="btn btn-primary">Ver</a></td>
-             <td><a href="{{ route('lotes.edit', $lote->id) }}" class="btn btn-warning">Editar</a></td>
-             <td>
-             {!! Form::open(['method' => 'DELETE', 'route'=>['lotes.destroy', $lote->id]]) !!}
-             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-             {!! Form::close() !!}
-             </td>
-             <td><a href="{{ route('sembrados_lote', $lote->id) }}" class="btn btn-warning">Sembrados</a></td>
-         </tr>
-     @endforeach
-     </tbody>
- </table>
+ <table class="table table-striped table-bordered table-hover" id="TblLotes">
+ <thead >
+   <tr class="bg-info">
+     <th>Nombre</th>
+     <th>Estado</th>
+     <th>Fecha creación</th>
+     <th>Acciones</th>
+   </tr>
+   {{ csrf_field() }}
+ </thead>
+
+
+</table>
+
+<script >
+  $(document).ready( function () {
+    $('#TblLotes').DataTable(
+    {
+      "processing": true,
+      "serverSide": true,
+      "ajax": "{{ url('data_lotes')}}",
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      },
+      "columns":[
+        {data: 'nombre'},
+        {data: 'estado'},
+        {data: 'created_at'},
+        {data: 'action', name: 'action', orderable: false, searchable: false}
+      ]
+    } 
+    );
+
+  //implementar modal para confirmacion :D
+  /**/
+  $('#TblLotes').on('click', '.delete_button', function() {
+    var id = $(this).data('id');
+    
+    $.ajax({
+      type: 'DELETE',
+      url: '{{ url('lotes')}}'+'/'+ id,
+      data: {
+        '_token': $('input[name=_token]').val(),
+      },
+      success: function(data) {
+         $('#TblLotes').DataTable().ajax.reload();
+      },error: function(data){
+        console.log(data['responseJSON']['message']);
+        alert(data['responseJSON']['message']);
+      }
+    });
+  });
+  /**/
+
+  });
+  </script>
 @endsection

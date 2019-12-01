@@ -1,0 +1,58 @@
+body{
+  background-color: #0089A5!important;
+}
+
+.menu{
+  display: inline-flex;
+}
+
+ul.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: red;
+  width: 100%
+}
+
+ul.menu li {
+  float: left;
+}
+
+ul.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+}
+
+ul.menu li a:hover {
+  background-color: black;
+}
+
+div.encabezado{
+  height: 70px;
+}
+
+img.tamano{
+  height: 70px;
+}
+
+img.tamano.user{
+  position: relative;
+  left: 230px;
+}
+
+.nombre_aplicacion{
+  text-align: center;
+}
+
+.separador20px{
+  height: 20px;
+}
+
+.img_home{
+  height: 23px;
+}
+

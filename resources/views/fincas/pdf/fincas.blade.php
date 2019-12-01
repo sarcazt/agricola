@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layout.plantillapdf')
 @section('content')
 <style type="text/css">
 
@@ -27,18 +27,24 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>departamento</th>
-                <th>ciudad</th>
-                <th>fecha creacion</th>
+                <th>Nit</th>
+                <th>Nombre</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Fecha creación</th>
             </tr>                            
         </thead>
         <tbody>
             @foreach($fincas as $finca)
             <tr>
-                <td>{{ $finca->id }}</td>
+                <td>{{ $finca->nit }}</td>
+                <td>{{ $finca->nombre }}</td>
                 <td>{{ $finca->departamento }}</td>
                 <td>{{ $finca->ciudad }}</td>
+                <td>{{ $finca->direccion }}</td>
+                <td>{{ $finca->telefono }}</td>
                 <td class="text-right">{{ $finca->created_at }}</td>
             </tr>
             @endforeach
