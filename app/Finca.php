@@ -9,6 +9,8 @@ class Finca extends Model
 
     protected $fillable = [
     	'id',
+    	'nit',
+    	'nombre',
         'departamento_id',
         'ciudad_id',
         'direccion',

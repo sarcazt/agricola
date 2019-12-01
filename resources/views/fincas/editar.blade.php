@@ -19,28 +19,38 @@
         {!! Form::model($finca, ['method' => 'PATCH', 'route' => ['fincas.update', $finca->id], 'files' => true ]) !!}
         <div class="col-md-6">
 
+            <div class="form-group">
+                {!! Form::label('nit', 'Nit:') !!}
+                {!! Form::text('nit',null,['class'=>'form-control','readonly' => 'true']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('nombre', 'Nombre:') !!}
+                {!! Form::text('nombre',null,['class'=>'form-control']) !!}
+            </div>
+
             {{-- cargo todos los departamentos pero selecciono el que esta en el registro --}}
             <div class="form-group">
             {!! Form::label('departamento_id', 'Departamento:') !!}
-            {!! Form::select('departamento_id', $departamentos, $finca->dep_id, ['class' => 'form-control']) !!}
+            {!! Form::select('departamento_id', $departamentos, $finca->dep_id, ['class' => 'form-control sel-status']) !!}
             </div> 
 
             {{-- si la persona se equivo de municipio le cargo las ciudades del departamento que habia escogido, si cambia departamento se hace ajax para cargar ciudades correspondientes --}}
             <div class="form-group">
               <label>Ciudad:</label>
-              {!! Form::select('ciudad_id',$ciudades,null,['class'=>'form-control']) !!}
+              {!! Form::select('ciudad_id',$ciudades,null,['class'=>'form-control sel-status']) !!}
             </div>
 
 
 
             <div class="form-group">
-                {!! Form::label('direccion', 'direccion:') !!}
+                {!! Form::label('direccion', 'Direccion:') !!}
                 {!! Form::text('direccion',null,['class'=>'form-control']) !!}
             </div>
 
 
             <div class="form-group">
-                {!! Form::label('telefono', 'telefono:') !!}
+                {!! Form::label('telefono', 'Telefono:') !!}
                 {!! Form::text('telefono',null,['class' => 'form-control', 'required' => 'required']) !!}
             </div>
 

@@ -1,0 +1,16 @@
+.separador60px{
+	height: 60px;
+}
+
+tr.bg-info th{
+	text-align: center;
+}
+
+td{
+   text-align: center;
+}
+
+.icono_pdf{
+	font-size: 20px;
+	color: red;
+}

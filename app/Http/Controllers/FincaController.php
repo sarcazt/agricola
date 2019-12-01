@@ -31,20 +31,20 @@ class FincaController extends Controller
 		            $join->on('fincas.ciudad_id', '=', 'ciudades.id')
 		                 ->on('fincas.departamento_id', '=', 'ciudades.departamento_id');
 		        })
-            ->select('fincas.id','departamentos.descripcion as departamento', 'ciudades.descripcion as ciudad', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
+            ->select('fincas.id','fincas.nit','fincas.nombre','fincas.created_at')
             ->get();         
 
         return DataTables::of($fincas)
         ->addColumn('action', function ($data){
             return '
-                <div style="display:flex;align-items:center;justify-content:center">
-                <a style="margin-right: 5%;text" href="'.url('fincas', $data->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
+                <div style="display:flex;align-items:center;justify-content:center" >
+                <a title="ver finca" style="margin-right: 5%;text" href="'.url('fincas', $data->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
 
-                <a style="margin-right: 5%;text" href="'.route('fincas.edit', $data->id).'" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                <a title="editar finca" style="margin-right: 5%;text" href="'.route('fincas.edit', $data->id).'" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
 
-                <a style="margin-right: 5%;text" data-id="'.$data->id.'" class="btn btn-danger delete_button"><i class="glyphicon glyphicon-trash"></i></a>
+                <a title="eliminar finca" style="margin-right: 5%;text" data-id="'.$data->id.'" class="btn btn-danger delete_button"><i class="glyphicon glyphicon-trash"></i></a>
 
-                <a style="margin-right: 5%;text" href="'.route('lotes_finca', $data->id).'" class="btn btn-info">lotes <i class="glyphicon glyphicon-th"></i></a>
+                <a title="ver lotes" style="margin-right: 5%;text" href="'.route('lotes_finca', $data->id).'" class="btn btn-info">lotes <i class="glyphicon glyphicon-th"></i></a>
                 </div>
                 ';
         })
@@ -61,7 +61,7 @@ class FincaController extends Controller
 		            $join->on('fincas.ciudad_id', '=', 'ciudades.id')
 		                 ->on('fincas.departamento_id', '=', 'ciudades.departamento_id');
 		        })
-            ->select('fincas.id','departamentos.descripcion as departamento', 'ciudades.descripcion as ciudad', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
+            ->select('fincas.id','fincas.nit','fincas.nombre','departamentos.descripcion as departamento', 'ciudades.descripcion as ciudad', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
             ->where('fincas.id','=',$id)
             ->get();
         
@@ -81,6 +81,8 @@ class FincaController extends Controller
 	{
 		$finca = $request->all();
 		$validator = Validator::make($finca, [
+            'nit' => 'unique:Finca|required',
+            'nombre' => 'required',
 			'departamento_id'    => 'required|max:50',
 			'ciudad_id'  => 'required|max:50',
 			'direccion'    => 'max:20',
@@ -116,7 +118,7 @@ class FincaController extends Controller
 		            $join->on('fincas.ciudad_id', '=', 'ciudades.id')
 		                 ->on('fincas.departamento_id', '=', 'ciudades.departamento_id');
 		        })
-            ->select('fincas.id','departamentos.id as dep_id', 'ciudades.id as ciudad_id', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
+            ->select('fincas.id','fincas.nit','fincas.nombre','departamentos.id as dep_id', 'ciudades.id as ciudad_id', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
             ->where('fincas.id','=',$id)
             ->get();
         
@@ -163,8 +165,8 @@ class FincaController extends Controller
 
     public function destroy($id)
     {
-    	Finca::find($id)->delete();
-    	return redirect('fincas');
+    	 Finca::find($id)->delete();
+
     }
 
 
@@ -191,10 +193,14 @@ class FincaController extends Controller
                     $join->on('fincas.ciudad_id', '=', 'ciudades.id')
                          ->on('fincas.departamento_id', '=', 'ciudades.departamento_id');
                 })
-            ->select('fincas.id','departamentos.descripcion as departamento', 'ciudades.descripcion as ciudad', 'fincas.direccion','fincas.telefono','fincas.created_at','fincas.updated_at')
+            ->select('fincas.nit','fincas.nombre','departamentos.descripcion as departamento', 'ciudades.descripcion as ciudad', 'fincas.direccion','fincas.telefono','fincas.created_at')
             ->get();
 
-        $pdf = PDF::loadView('fincas.pdf.fincas', compact('fincas'));
+        //orientacion horizontal
+        $pdf = PDF::loadView('fincas.pdf.fincas', compact('fincas'))->setPaper('a4', 'landscape');
+        
+        //para ven en html si se necesita algun cambio
+        // return view('fincas.pdf.fincas', compact('fincas'));
 
         if ($tipo == 1) {
             // ver pdf
