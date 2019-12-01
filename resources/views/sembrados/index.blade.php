@@ -26,12 +26,11 @@
                <th colspan="4" >Acciones</th>
              </thead>
              <tbody>
-              @if($sembrados->count())  
               @foreach($sembrados as $sembrados)  
               <tr>
                 <td>{{$sembrados->id}}</td>
                 <td>{{$sembrados->lote_id}}</td>
-                <td>{{$sembrados->cultivo_id}}</td>
+                <td>{{$sembrados->cultivo}}</td>
                 <td>{{$sembrados->semilla_id}}</td>
                 <td>{{$sembrados->cantidad_semilla}}</td>
                 <td>{{$sembrados->trabajador_id}}</td>
@@ -47,12 +46,7 @@
              {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
              {!! Form::close() !!}</td>
                </tr>
-               @endforeach 
-               @else
-               <tr>
-                <td colspan="8">No hay registro !!</td>
-              </tr>
-              @endif
+               @endforeach
             </tbody>
  
           </table>

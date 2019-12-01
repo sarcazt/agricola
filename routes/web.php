@@ -21,6 +21,7 @@ Route::get('data_fincas','FincaController@registros_finca');
 
 Route::resource('lotes','LoteController');
 Route::resource('sembrados','SembradosController');
+Route::resource('cultivos','CultivosController');
 
 Route::post('ciudadesAjax', ['as'=>'ciudadesAjax','uses'=>'FincaController@ajaxCiudades']);
 

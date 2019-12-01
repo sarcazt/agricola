@@ -18,9 +18,8 @@ class SembradosController extends Controller
     {
         session(['id_lote' => $id]);
         // $sembrados= DB::table('Sembrados')->where('lote_id','=',$id)::orderBy('id','DESC')->paginate(5);
-        $sembrados = DB::table('sembrados')
-        ->where('lote_id','=',$id)
-        ->get();
+        $sembrados = DB::select("select s.*, c.descripcion as cultivo from sembrados s, cultivos c where s.cultivo_id = c.id and s.lote_id = " . $id);
+        
         return view('sembrados.index',compact('sembrados')); 
     }
 
